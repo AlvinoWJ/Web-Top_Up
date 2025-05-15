@@ -37,7 +37,7 @@
                     <span class="input-group-text">
                         <img src="https://flagcdn.com/w40/id.png" alt="ID" width="20">
                     </span>
-                    <input type="text" id="whatsapp" name="whatsapp" class="form-control login-input" placeholder="+62" required>
+                    <input type="text" id="whatsapp" name="no_telp" class="form-control login-input" placeholder="+62" required>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                     <div class="col-md-6">
                     <label for="konfirmasi" class="form-label">Konfirmasi kata sandi</label>
                     <div class="input-group">
-                        <input type="password" id="konfirmasi" name="konfirmasi" class="form-control login-input" placeholder="Konfirmasi kata sandi" required>
+                        <input type="password" id="konfirmasi" name="password2" class="form-control login-input" placeholder="Konfirmasi kata sandi" required>
                         <span class="input-group-text login-icon-wrapper" id="toggleConfirmPassword">
                         <i class="bi bi-eye-slash" id="eyeIconConfirm"></i>
                         </span>
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="d-grid">
-                    <button type="submit" class="btn text-white" style="background-color: #d4af37;">Daftar</button>
+                    <button type="submit" name="registrasi" class="btn text-white" style="background-color: #d4af37;">Daftar</button>
                 </div>
                 </form>
                 <div class="mt-3 text-center">
