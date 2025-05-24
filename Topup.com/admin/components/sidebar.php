@@ -1,3 +1,5 @@
+
+
 <div class="d-flex">
   <div class="sidebar d-flex flex-column p-3" style="position: fixed; width: 250px; height: 100vh;">
     <h4 class="text-white">CincaAdmin</h4>
@@ -28,10 +30,18 @@
             3
           </span>
         </button>
-        <div class="text-end">
-          <div>Alvino Wijaya</div>
-          <small class="text-muted">Admin</small>
-        </div>
+        <div class="dropdown">
+  <button class="btn btn-light dropdown-toggle d-flex align-items-center gap-2" type="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bi bi-person-circle fs-5"></i>
+    <div class="text-start d-none d-md-block">
+      <div><?= $_SESSION['username']; ?></div>
+    </div>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+    <li><a class="dropdown-item" href="logout.php"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+  </ul>
+</div>
+
       </div>
     </nav>
 

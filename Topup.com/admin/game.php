@@ -3,8 +3,8 @@ session_start();
 include '../function.php';
 
 // Inisialisasi array game jika belum ada
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
+if (!isset($_SESSION['username']) || $_SESSION['role_id'] != 1) {
+    header("Location: /Web-top_up/topup.com/login.php");
     exit;
 }
 
