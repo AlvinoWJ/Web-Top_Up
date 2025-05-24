@@ -1,10 +1,14 @@
 <?php
 session_start();
+include '../function.php';
 
 // Inisialisasi array game jika belum ada
-if (!isset($_SESSION['games'])) {
-  $_SESSION['games'] = [];
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
 }
+
+$data_game =  ambilData("SELECT * FROM games");
 
 // Tangani form jika disubmit
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nama'], $_FILES['gambar'])) {
@@ -25,13 +29,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nama'], $_FILES['gamba
         'nama' => $nama,
         'deskripsi' => $deskripsi,
         'gambar' => $targetPath
-    ];
-    $_SESSION['games'][] = $newGame;
+    ]; }
 
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit;
+    if(tambahDataGame($newGame) > 0){
+
+        echo "<script>
+            alert('Data berhasil ditambahkan')
+        </script>";
+        } else{
+        echo "<script>
+            alert('Data tidak ditambahkan')
+        </script>";
+        echo mysqli_error($database);
+        }
+
+        echo "
+        <script>
+            document.location.href = 'game.php';
+        </script>
+        ";
+    
+    
     }
-}
+
 
 ?>
 
@@ -45,6 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nama'], $_FILES['gamba
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/admin.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+
 
 </head>
 <body>
@@ -58,27 +81,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nama'], $_FILES['gamba
         </button>
     </div>
 
-    <table class="table table-light table-striped">
+    <table id="tabelGame" class="table table-light table-striped">
         <thead>
             <tr>
                 <th>no</th>
                 <th>Nama Game</th>
                 <th>Gambar</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($_SESSION['games'])): ?>
-                <?php foreach ($_SESSION['games'] as $i => $game): ?>
+            <?php if (!empty($data_game)): ?>
+                <?php foreach ($data_game as $i => $game): ?>
                     <tr>
                         <td><?= $i + 1 ?></td>
-                        <td><?= $game['nama'] ?></td>
+                        <td><?= $game['name'] ?></td>
                         <td> 
-                            <?php if (!empty($game['gambar'])): ?>
-                            <img src="<?= $game['gambar'] ?>" alt="Gambar Game" style="max-width: 100px;">
+                            <?php if ( $game['icon_game'] != ''): ?>
+                            <img src="<?= $game['icon_game'] ?>" alt="Gambar Game" style="max-width: 100px;">
                             <?php else: ?>
                             <span class="text-muted">Tidak ada gambar</span>
                             <?php endif; ?>
                         </td>
+                       <td>
+                            <a href="edit_game.php?id=<?= $game['id'] ?>" class="btn btn-sm btn-warning">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a href="hapus_game.php?id=<?= $game['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus game ini?')">
+                                <i class="bi bi-trash"></i> Hapus
+                            </a>
+                        </td>
+
+
 
                     </tr>
                 <?php endforeach; ?>
@@ -115,6 +149,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nama'], $_FILES['gamba
         </form>
     </div>
 </div>
+
+
+<!-- jQuery & DataTables -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $('#tabelGame').DataTable({
+      responsive: true,
+      language: {
+        search: "Cari:",
+        lengthMenu: "Tampilkan _MENU_ data",
+        info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+        paginate: {
+          previous: "Sebelumnya",
+          next: "Berikutnya"
+        }
+      }
+    });
+  });
+</script>
+
 
 </body>
 </html>

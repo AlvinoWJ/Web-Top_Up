@@ -49,6 +49,23 @@ function register_akun($data){
         ");
 
         return mysqli_affected_rows($database);
+}
+
+function tambahDataGame($data){
+    global $database;
+
+    $nama = $data['nama'];
+    $deskripsi = $data['deskripsi'];
+    $gambar = $data['gambar'];
+    // query data
+    mysqli_query($database, "INSERT INTO games VALUES
+    ('', '$nama', '$gambar', '$deskripsi')
+    ");
+
+    $feedback = mysqli_affected_rows($database);
+
+    return $feedback;
+
 
 }
 

@@ -25,7 +25,7 @@ if (mysqli_num_rows($result) === 1) {
         $_SESSION['role'] = $row['role_id']; // opsional, kalau kamu simpan role
         
         if($_SESSION['role'] == 1){
-            header("Location: dashboard.php");
+            header("Location: admin/dashboard.php");
             exit();
         } else {
             header("Location: index.php");
