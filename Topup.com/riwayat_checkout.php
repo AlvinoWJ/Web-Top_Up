@@ -69,27 +69,68 @@ document.addEventListener('DOMContentLoaded', function () {
   <h3 class="text-white mb-4">Riwayat Transaksi</h3>
 
   <div class="row g-4">
-  <?php if (empty($riwayat)) : ?>
-    <div class="col-12">
-      <div class="alert alert-info text-center" role="alert">
-        Tidak ada transaksi yang ditemukan.
+    <?php foreach($riwayat as $r): ?>
+       
+        <div class="col-12 mb-4">
+  <div class="card bg-dark text-white p-3 rounded-4 shadow-sm">
+    <div class="row g-3 align-items-center">
+      <!-- Gambar Game -->
+      <div class="col-auto">
+        <img src="admin/<?= $r['icon_game']; ?>" alt="Game Icon" style="width: 90px; height: 90px; object-fit: cover;" class="rounded">
+      </div>
+
+      <!-- Informasi Transaksi -->
+      <div class="col">
+        <h5 class="mb-1"><?= $r['nama_game']; ?> - <?= $r['nama_paket']; ?></h5>
+        <p class="mb-1"><?= $r['jumlah_item']; ?> <?= $r['nama_item']; ?> - Rp<?= number_format($r['harga'], 0, ',', '.'); ?></p>
+            <p class="mb-1">Player ID: <strong><?= $r['player_id']; ?></strong> | Server ID: <strong><?= $r['server_id']; ?></strong></p>
+        <p class="mb-1"><?= $r['metode_pembayaran']; ?></p>
+        <p class="mb-1">Status: 
+          <span class="badge 
+          <?php if($r['status'] == 'belum_dibayar') : ?> bg-secondary
+            <?php elseif($r['status'] == 'proses') : ?> bg-warning
+                <?php elseif($r['status'] == 'selesai') : ?> bg-success
+                    <?php else : ?> bg-danger
+                        <?php endif ?>
+          ">
+            <?= $r['status']; ?>
+          </span>
+        </p>
+        <small class="text-muted"><?= $r['waktu']; ?></small>
+      </div>
+
+      <!-- Tombol Upload -->
+      <div class="col-auto text-end">
+        
+
+        <?php if ($r['bukti_bayar']) : ?>
+          <a href="<?= $r['bukti_bayar']; ?>" target="_blank" class="btn btn-sm btn-success mt-2 d-block">Lihat Bukti</a>
+          <?php if($r['status'] != 'selesai') : ?>
+        <button 
+            class="btn btn-outline-info btn-sm d- mt-3"
+            data-bs-toggle="modal" 
+            data-bs-target="#editBuktiModal" 
+            data-id="<?= $r['id']; ?>">
+            Edit Bukti
+        </button>
+        <?php endif; ?>
+          <?php else: ?>
+            <button 
+          class="btn btn-outline-warning btn-sm" 
+          data-bs-toggle="modal" 
+          data-bs-target="#uploadBuktiModal" 
+          data-id="<?= $r['id']; ?>">
+          Upload Bukti
+        </button>
+        <?php endif; ?> 
       </div>
     </div>
-  <?php else: ?>
-    <?php foreach($riwayat as $r): ?>
-      <!-- Card Transaksi -->
-      <div class="col-12 mb-4">
-        <div class="card bg-dark text-white p-3 rounded-4 shadow-sm">
-          <div class="row g-3 align-items-center">
-            <!-- Konten transaksi seperti sebelumnya -->
-            ...
-          </div>
-        </div>
-      </div>
-    <?php endforeach; ?>
-  <?php endif; ?>
+  </div>
 </div>
 
+
+    <?php endforeach; ?>
+</div>
 
 
 <!-- Modal Upload Bukti -->
