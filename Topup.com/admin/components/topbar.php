@@ -13,11 +13,7 @@
         <small class="text-muted">Admin</small>
       </div>
 
-      <!-- Tombol Logout -->
-      <a href="logout.php" class="btn btn-outline-danger d-flex align-items-center gap-1">
-        <i class="bi bi-box-arrow-right"></i>
-        <span class="d-none d-md-inline">Logout</span>
-      </a>
+      
     </div>
   </div>
 </div>

@@ -15,7 +15,7 @@
         <a href="package.php" class="nav-link d-flex justify-content-between align-items-center text-white">Package<i class="bi bi-chevron-right"></i></a>
       </li>
       <li>
-        <a href="#" class="nav-link d-flex justify-content-between align-items-center text-white">Pengaturan<i class="bi bi-chevron-right"></i></a>
+        <a href="transaksi.php" class="nav-link d-flex justify-content-between align-items-center text-white">Transaksi<i class="bi bi-chevron-right"></i></a>
       </li>
     </ul>
   </div>

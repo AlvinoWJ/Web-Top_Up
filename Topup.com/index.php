@@ -1,22 +1,7 @@
 <?php
-$games = [
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-    (object)[ 'title' => 'Delta Force', 'image' => 'image/Delta_Force.jpg' ],
-];
+include 'function.php';
+session_start();
+$games = ambilData("SELECT * FROM games");
 
 
 ?>

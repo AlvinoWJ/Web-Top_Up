@@ -1,16 +1,25 @@
 <div class="container mt-5">
     <div class="row row-cols-2 row-cols-md-6 g-3 mb-4">
-        <?php foreach ($games as $index => $game): ?>
-            <?php
-                $shouldHide = !empty($showToggleButton) && $showToggleButton && $index >= 12;
-            ?>
-            <div class="col <?= $shouldHide ? 'extra-card hidden-card' : '' ?>">
-                <div class="card rounded-4 overflow-hidden fade-card">
-                    <img src="<?= $game->image ?>" class="card-image rounded-4" alt="...">
+    <?php foreach ($games as $index => $g): ?>
+        <?php
+            $shouldHide = !empty($showToggleButton) && $showToggleButton && $index >= 12;
+        ?>
+        <div class="col <?= $shouldHide ? 'extra-card hidden-card' : '' ?>">
+            <div class="card bg-dark text-white rounded-4 overflow-hidden fade-card h-100 d-flex flex-column justify-content-between shadow-sm">
+                <!-- Gambar Game -->
+                <img src="admin/<?= $g['icon_game'] ?>" class="card-image rounded-4" alt="<?= htmlspecialchars($g['name']) ?>" style="object-fit: cover; height: 150px;">
+
+                <!-- Nama Game dan Tombol -->
+                <div class="p-2 text-center">
+                    <h6 class="mt-2 mb-2"><?= htmlspecialchars($g['name']) ?></h6>
+                    <a href="topup.php?id=<?= $g['id'] ?>" class="btn btn-outline-light btn-sm">Top Up</a>
                 </div>
             </div>
-        <?php endforeach; ?>
-    </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+
 
 
     <?php if (!empty($showToggleButton) && $showToggleButton): ?>

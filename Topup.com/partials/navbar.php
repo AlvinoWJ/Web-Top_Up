@@ -16,13 +16,20 @@
                     <a class="nav-link text-white" href="index.php">Beranda</a>
                 </li>
                 <li class="nav-item mx-3">
-                    <a class="nav-link text-white" href="game.php">Semua Game</a>
+                    <a class="nav-link text-white" href="riwayat_checkout.php">Riwayat</a>
                 </li>
             </ul>
         </div>
-        <a href="login.php">
-            <button type="button" class="btn text-white fw-bold" style="background-color: #d4af37;">MASUK / DAFTAR</button>
-        </a>
+        <?php if (isset($_SESSION['username'])) : ?>
+            <a href="admin/logout.php" onclick="return confirm('Yakin ingin logout?')">
+                <button type="button" class="btn text-white fw-bold" style="background-color: #dc3545;">LOGOUT</button>
+            </a>
+        <?php else : ?>
+            <a href="login.php">
+                <button type="button" class="btn text-white fw-bold" style="background-color: #d4af37;">MASUK / DAFTAR</button>
+            </a>
+        <?php endif; ?>
+
     </div>
 </nav>
 

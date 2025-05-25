@@ -23,6 +23,7 @@ if (mysqli_num_rows($result) === 1) {
         // Password benar, set session
         $_SESSION['username'] = $row['username'];
         $_SESSION['role'] = $row['role_id']; // opsional, kalau kamu simpan role
+        $_SESSION['user_id'] = $row['id'];
         
         if($_SESSION['role'] == 1){
             header("Location: admin/dashboard.php");

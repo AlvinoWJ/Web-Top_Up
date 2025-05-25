@@ -1,3 +1,13 @@
+<?php 
+if (isset($_SESSION['username'])) {
+    $previousPage = $_SERVER['HTTP_REFERER'] ?? '/Web-top_up/topup.com/index.php';
+    header("Location: $previousPage");
+    exit;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
