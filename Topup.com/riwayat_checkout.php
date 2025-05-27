@@ -22,8 +22,11 @@ FROM transaksi
 JOIN users on transaksi.user_id = users.id
 JOIN paket ON transaksi.paket_id = paket.id
 JOIN games ON paket.game_id = games.id
-WHERE transaksi.user_id = {$_SESSION['user_id']};"); // jika login digunakan
+WHERE transaksi.user_id = {$_SESSION['user_id']} ORDER BY transaksi.id DESC"); 
+
 ?>
+
+
 <!doctype html>
 <html lang="en" data-bs-theme="dark">
 <head>

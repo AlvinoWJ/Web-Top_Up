@@ -7,7 +7,7 @@ if (!isset($_SESSION['username']) && $_SESSION['role_id'] != 1) {
     exit;
 }
 
-// Ambil semua data transaksi
+// Ambil semua data transaksi urut ASC
 $data_transaksi = ambilData("SELECT 
     transaksi.*, 
     users.username, users.no_telpon,
@@ -16,8 +16,9 @@ $data_transaksi = ambilData("SELECT
 FROM transaksi
 JOIN users ON transaksi.user_id = users.id
 JOIN paket ON transaksi.paket_id = paket.id
-JOIN games ON paket.game_id = games.id;");
-?>
+JOIN games ON paket.game_id = games.id
+ORDER BY transaksi.id DESC;");
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">

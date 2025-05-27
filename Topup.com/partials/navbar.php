@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
     <div class="container my-2">
-        <a class="navbar-brand text-white" href="#">Navbar</a>
+        <a class="navbar-brand text-white" href="#">Topup</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,10 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                 <li class="nav-item">
-                    <div class="position-relative mx-3">
-                        <input type="text" class="form-control ps-5 rounded-pill search-input" placeholder="Cari Produk">
-                        <i class="fas fa-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
-                    </div>
+                   
                 </li>
                 <li class="nav-item mx-2">
                     <a class="nav-link text-white" href="index.php">Beranda</a>
